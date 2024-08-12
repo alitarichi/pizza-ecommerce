@@ -13,8 +13,8 @@ export default function Hero() {
           Pizza is the moissing piece that makes every day complete, a simple
           yet delicious joy in life
         </p>
-        <div className="flex gap-4">
-          <button className=" bg-red-500 flex gap-2 text-white px-4 py-2 rounded-full">
+        <div className="flex gap-4 text-sm">
+          <button className=" bg-red-500 uppercase flex gap-2 text-white px-4 py-2 rounded-full items-center ">
             Order Now!
             <Right />
           </button>
