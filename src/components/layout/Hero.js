@@ -4,12 +4,14 @@ import Information from "../icons/information";
 
 export default function Hero() {
   return (
-    <section className="grid grid-cols-2">
-      <div>
+    <section className="hero">
+      <div className="py-12">
         <h1 className="text-4xl font-semibold">
-          Everything is better with a Pizza
+          Everything <br />
+          is better <br />
+          with a <span className="text-red-500"> Pizza</span>
         </h1>
-        <p className="my-4 text-gray-500">
+        <p className="my-4 text-gray-500 text-sm">
           Pizza is the moissing piece that makes every day complete, a simple
           yet delicious joy in life
         </p>
@@ -24,11 +26,11 @@ export default function Hero() {
           </button>
         </div>
       </div>
-      <div className="w-16 h-16 relative">
+      <div className="relative">
         <Image
           src={"/pizza.png"}
-          layout="fill"
-          objectFit="contain"
+          layout={"fill"}
+          objectFit={"contain"}
           alt="pizza"
         />
       </div>
