@@ -11,7 +11,7 @@ export default function Hero() {
           is better <br />
           with a <span className="text-red-500"> Pizza</span>
         </h1>
-        <p className="my-4 text-gray-500 text-sm">
+        <p className="my-6 text-gray-500 text-sm">
           Pizza is the moissing piece that makes every day complete, a simple
           yet delicious joy in life
         </p>
