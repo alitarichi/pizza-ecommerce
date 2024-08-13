@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import Hero from "@/components/layout/Hero";
 import HomeMenu from "@/components/layout/HomeMenu";
@@ -48,9 +49,7 @@ export default function Home() {
           </a>
         </div>
         <section>
-          <footer className="border-t p-8 text-center mt-16">
-            &copy; 2024 All right reseved. Developed by Ali Tarichi
-          </footer>
+          <Footer />
         </section>
       </section>
     </>
