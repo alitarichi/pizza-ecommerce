@@ -6,3 +6,9 @@ section.hero {
   @apply grid;
   grid-template-columns: 0.4fr 0.6fr;
 }
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  @apply block border p-2 border-gray-300 bg-gray-200 w-full my-4 rounded-xl;
+}
