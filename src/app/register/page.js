@@ -8,12 +8,20 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  function handleFormSubmit(ev) {
+    ev.preventDefault();
+    fetch("/api/register", {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+  }
   return (
     <section>
       <div className="text-center py-8 mb-4">
         <SectionHeaders MainHeader={"Register"} />
       </div>
-      <form className="block max-w-xs mx-auto">
+      <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
         <input
           type="email"
           placeholder="Your Email"
