@@ -1,15 +1,31 @@
+"use client";
+
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function RegisterPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <section>
       <div className="text-center py-8 mb-4">
         <SectionHeaders MainHeader={"Register"} />
       </div>
       <form className="block max-w-xs mx-auto">
-        <input type="email" placeholder="Your Email" />
-        <input type="password" placeholder="Your Password" />
+        <input
+          type="email"
+          placeholder="Your Email"
+          value={email}
+          onChange={(ev) => setEmail(ev.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Your Password"
+          value={password}
+          onChange={(ev) => setPassword(ev.target.value)}
+        />
         <button className="mt-16" type="submit">
           Register
         </button>
