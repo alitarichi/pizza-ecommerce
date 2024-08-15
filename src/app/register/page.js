@@ -9,7 +9,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [creatingUser, setCreatingUser] = useState(false);
-  const [userCreated, setUserCreated] = useState(true);
+  const [userCreated, setUserCreated] = useState(false);
 
   async function handleFormSubmit(ev) {
     ev.preventDefault();
@@ -20,6 +20,7 @@ export default function RegisterPage() {
       headers: { "Content-Type": "application/json" },
     });
     setCreatingUser(false);
+    setUserCreated(true);
   }
   return (
     <section>
