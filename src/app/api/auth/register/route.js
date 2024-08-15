@@ -1,1 +1,3 @@
-export function POST(req) {}
+export function POST(req) {
+  return Response.json("ok");
+}

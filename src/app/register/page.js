@@ -34,14 +34,14 @@ export default function RegisterPage() {
           value={password}
           onChange={(ev) => setPassword(ev.target.value)}
         />
-        <button className="mt-16" type="submit">
+        <button className="w-full mt-16" type="submit">
           Register
         </button>
         <div className="my-4 text-center text-gray-500">
           <h1>or login with provider</h1>
         </div>
-        <button className="flex gap-4 justify-center">
-          <Image src={"/google.png"} alt="google" width={24} height={24} />
+        <button className=" w-full flex gap-4 justify-center">
+          <Image src={"/google.png"} alt={""} width={24} height={24} />
           Login with Google
         </button>
       </form>
