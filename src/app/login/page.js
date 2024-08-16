@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,19 +10,13 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [logInProgress, setLogInProgress] = useState(false);
+
   async function handleFormSubmit(ev) {
     ev.preventDefault();
     setLogInProgress(true);
-    const response = await fetch("./api/login", {
-      body: JSON.stringify({ email, password }),
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (response.ok) {
-    } else {
-    }
+
+    await signIn("credentials", { email, password });
+
     setLogInProgress(false);
   }
 
@@ -52,11 +47,11 @@ export default function LoginPage() {
           <h1>or login with provider</h1>
         </div>
         <button className=" w-full flex gap-4 justify-center">
-          <Image src={"/google.png"} alt={""} width={24} height={24} />
+          <Image src={"/google.png"} alt={"google"} width={24} height={24} />
           Login with Google
         </button>
         <div className="text-center my-8 text-gray-500 border-t pt-4">
-          Dosen't have an account?{"  "}
+          Don't have an account?{"  "}
           <Link href={"/register"} className="underline underline-offset-4">
             Register here &raquo;
           </Link>
