@@ -30,7 +30,7 @@ export default function RegisterPage() {
     setCreatingUser(false);
   }
   return (
-    <section>
+    <section className="pb-10">
       <div className="text-center py-8 mb-4">
         <SectionHeaders MainHeader={"Register"} />
       </div>
@@ -73,6 +73,12 @@ export default function RegisterPage() {
           <Image src={"/google.png"} alt={""} width={24} height={24} />
           Login with Google
         </button>
+        <div className="text-center my-8 text-gray-500 border-t pt-4">
+          Already have an account?{"  "}
+          <Link href={"/login"} className="underline underline-offset-4">
+            Login here &raquo;
+          </Link>
+        </div>
       </form>
     </section>
   );
