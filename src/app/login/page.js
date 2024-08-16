@@ -8,28 +8,44 @@ import { useState } from "react";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [logInProgress, setLogInProgress] = useState(false);
+  async function handleFormSubmit(ev) {
+    ev.preventDefault();
+    setLogInProgress(true);
+    const response = await fetch("./api/login", {
+      body: JSON.stringify({ email, password }),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+    } else {
+    }
+    setLogInProgress(false);
+  }
 
   return (
     <section className="pb-10 ">
       <div className="text-center py-8 mb-4">
         <SectionHeaders MainHeader={"Login"} />
       </div>
-      <form className="max-w-xs mx-auto">
+      <form className="max-w-xs mx-auto" onSubmit={handleFormSubmit}>
         <input
           type="email"
           placeholder="Your Email"
           value={email}
-          disabled={false}
+          disabled={logInProgress}
           onChange={(ev) => setEmail(ev.target.value)}
         />
         <input
           type="password"
           placeholder="Your Password"
           value={password}
-          disabled={false}
+          disabled={logInProgress}
           onChange={(ev) => setPassword(ev.target.value)}
         />
-        <button className="w-full mt-16" disabled={false} type="submit">
+        <button className="w-full mt-16" disabled={logInProgress} type="submit">
           login
         </button>
         <div className="my-4 text-center text-gray-500">
