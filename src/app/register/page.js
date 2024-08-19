@@ -69,8 +69,12 @@ export default function RegisterPage() {
         <div className="my-4 text-center text-gray-500">
           <h1>or login with provider</h1>
         </div>
-        <button className=" w-full flex gap-4 justify-center">
-          <Image src={"/google.png"} alt={""} width={24} height={24} />
+        <button
+          type="button"
+          onClick={() => signIn("google", { callbackUrl: "/" })}
+          className=" w-full flex gap-4 justify-center"
+        >
+          <Image src={"/google.png"} alt={"google"} width={24} height={24} />
           Login with Google
         </button>
         <div className="text-center my-8 text-gray-500 border-t pt-4">

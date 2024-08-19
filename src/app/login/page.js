@@ -15,7 +15,7 @@ export default function LoginPage() {
     ev.preventDefault();
     setLogInProgress(true);
 
-    await signIn("credentials", { email, password });
+    await signIn("credentials", { email, password, callbackUrl: "/" });
 
     setLogInProgress(false);
   }
