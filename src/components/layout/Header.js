@@ -8,6 +8,10 @@ export default function Header() {
   const status = session?.status;
   const userData = session.data?.user;
   let userName = userData?.name || userData?.email;
+  if (userData?.name) {
+    userName = userData.name.split(" ")[0];
+  }
+
   return (
     <header className="flex items-center justify-between">
       <Link href="" className=" text-red-500 font-semibold text-2xl ">
@@ -22,7 +26,9 @@ export default function Header() {
       <nav className="flex items-center gap-4 text-gray-500 font-semibold">
         {status === "authenticated" && (
           <>
-            <Link href={"/profile"}>{userName}</Link>
+            <Link href={"/profile"} className="whitespace-nowrap">
+              Hello, {userName}
+            </Link>
             <button
               onClick={() => signOut()}
               className="bg-red-500 rounded-full text-white px-8 py-2"
