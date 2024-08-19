@@ -47,7 +47,8 @@ export default function LoginPage() {
           <h1>or login with provider</h1>
         </div>
         <button
-          onClick={() => signIn("google")}
+          type="button"
+          onClick={() => signIn("google", { callbackUrl: "/" })}
           className=" w-full flex gap-4 justify-center"
         >
           <Image src={"/google.png"} alt={"google"} width={24} height={24} />

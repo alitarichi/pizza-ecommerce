@@ -3,12 +3,11 @@ import mongoose from "mongoose";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-import { GOOGLE_FONT_PROVIDER } from "next/dist/shared/lib/constants";
-
+import GoogleProvider from "next-auth/providers/google";
 const handler = NextAuth({
   secret: process.env.SECRET,
   providers: [
-    GOOGLE_FONT_PROVIDER({
+    GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
