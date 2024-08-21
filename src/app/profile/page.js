@@ -4,12 +4,18 @@ import SectionHeaders from "@/components/layout/SectionHeaders";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProfilePage() {
   const session = useSession();
-  const [username, setUsername] = useState(session?.data.user.name || "");
+  const [username, setUsername] = useState("");
   const { status } = session;
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      setUsername(session.data.user.name);
+    }
+  }, [session, status]);
 
   async function handleProfileInfoUpdate(ev) {
     ev.preventDefault();
