@@ -63,7 +63,7 @@ export default function ProfilePage() {
           </h2>
         )}
         <div className="flex gap-2 items-center">
-          <div>
+          <div className="px-10 ">
             <div className=" p-2 rounded-lg relative">
               <Image
                 className="rounded-lg w-full h-full mb-2"
@@ -72,7 +72,12 @@ export default function ProfilePage() {
                 width={250}
                 height={250}
               />
-              <button type="button">Edit Avatar</button>
+              <label>
+                <input type="file" className="hidden" />
+                <span className=" block bg-red-500 font-semibold text-white border-gray-500 border rounded-xl cursor-pointer px-4 py-2">
+                  Edit Avatar
+                </span>
+              </label>
             </div>
           </div>
           <form className="grow" onSubmit={handleProfileInfoUpdate}>
