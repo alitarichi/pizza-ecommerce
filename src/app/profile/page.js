@@ -11,6 +11,17 @@ export default function ProfilePage() {
   const [username, setUsername] = useState(session?.data.user.name || "");
   const { status } = session;
 
+  async function handleProfileInfoUpdate(ev) {
+    ev.preventDefault();
+    const response = await fetch("api/profile", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: username }),
+    });
+  }
+
   if (status === "loading") {
     return "loading...";
   }
@@ -26,7 +37,7 @@ export default function ProfilePage() {
       <div className="text-center py-8 mb-4">
         <SectionHeaders MainHeader={"Profile"} />
       </div>
-      <form className="max-w-md mx-auto">
+      <div className="max-w-md mx-auto">
         <div className="flex gap-2 items-center">
           <div>
             <div className=" p-2 rounded-lg relative">
@@ -40,7 +51,7 @@ export default function ProfilePage() {
               <button type="button">Edit Avatar</button>
             </div>
           </div>
-          <div className="grow">
+          <form className="grow" onSubmit={handleProfileInfoUpdate}>
             <input
               type="text"
               placeholder="First and last name"
@@ -55,9 +66,9 @@ export default function ProfilePage() {
             <button className="w-full" type="submit">
               Save
             </button>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </section>
   );
 }
