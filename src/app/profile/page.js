@@ -52,7 +52,9 @@ export default function ProfilePage() {
               disabled={true}
               value={session.data.user.email}
             />
-            <button type="submit">Save</button>
+            <button className="w-full" type="submit">
+              Save
+            </button>
           </div>
         </div>
       </form>
