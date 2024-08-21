@@ -36,6 +36,21 @@ export default function ProfilePage() {
     }
   }
 
+  async function handleFileChange(ev) {
+    const files = ev.files;
+    if (files.length > 0) {
+      const data = new FormData();
+      data.set("files", files);
+      await fetch("/api/upload", {
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    }
+  }
+
   if (status === "loading") {
     return "loading...";
   }
@@ -73,7 +88,11 @@ export default function ProfilePage() {
                 height={250}
               />
               <label>
-                <input type="file" className="hidden" />
+                <input
+                  type="file"
+                  className="hidden"
+                  onClick={handleFileChange}
+                />
                 <span className=" block bg-red-500 font-semibold text-white border-gray-500 border rounded-xl cursor-pointer px-4 py-2">
                   Edit Avatar
                 </span>
