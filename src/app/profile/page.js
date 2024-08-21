@@ -4,11 +4,12 @@ import SectionHeaders from "@/components/layout/SectionHeaders";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 export default function ProfilePage() {
-  const session = useSession;
+  const session = useSession();
+  const [username, setUsername] = useState(session?.data.user.name || "");
   const { status } = session;
-  console.log(session);
 
   if (status === "loading") {
     return "loading...";
@@ -18,16 +19,41 @@ export default function ProfilePage() {
     return redirect("/login");
   }
 
-  const userImage = session.user?.Image;
+  const userImage = session.data.user.image;
 
   return (
     <section>
       <div className="text-center py-8 mb-4">
         <SectionHeaders MainHeader={"Profile"} />
       </div>
-      <form className="max-w-xs mx-auto border">
-        <div>
-          <Image src={userImage} alt="avatar" width={64} height={64} />
+      <form className="max-w-md mx-auto">
+        <div className="flex gap-2 items-center">
+          <div>
+            <div className=" p-2 rounded-lg relative">
+              <Image
+                className="rounded-lg w-full h-full mb-2"
+                src={userImage}
+                alt="avatar"
+                width={250}
+                height={250}
+              />
+              <button type="button">Edit Avatar</button>
+            </div>
+          </div>
+          <div className="grow">
+            <input
+              type="text"
+              placeholder="First and last name"
+              value={username}
+              onChange={(ev) => setUsername(ev.target.value)}
+            />
+            <input
+              type="email"
+              disabled={true}
+              value={session.data.user.email}
+            />
+            <button type="submit">Save</button>
+          </div>
         </div>
       </form>
     </section>
