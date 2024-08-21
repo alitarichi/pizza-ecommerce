@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 export default function ProfilePage() {
   const session = useSession();
   const [username, setUsername] = useState("");
+  const [saved, setSaved] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -19,6 +20,7 @@ export default function ProfilePage() {
 
   async function handleProfileInfoUpdate(ev) {
     ev.preventDefault();
+    setSaved(false);
     const response = await fetch("api/profile", {
       method: "PUT",
       headers: {
@@ -26,6 +28,9 @@ export default function ProfilePage() {
       },
       body: JSON.stringify({ name: username }),
     });
+    if (response.ok) {
+      setSaved(true);
+    }
   }
 
   if (status === "loading") {
@@ -44,6 +49,11 @@ export default function ProfilePage() {
         <SectionHeaders MainHeader={"Profile"} />
       </div>
       <div className="max-w-md mx-auto">
+        {saved && (
+          <h2 className="text-center bg-green-100 p-4 rounded-lg border border-green-300">
+            Profile Saved!
+          </h2>
+        )}
         <div className="flex gap-2 items-center">
           <div>
             <div className=" p-2 rounded-lg relative">
