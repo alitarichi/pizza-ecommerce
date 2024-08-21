@@ -10,6 +10,7 @@ export default function ProfilePage() {
   const session = useSession();
   const [username, setUsername] = useState("");
   const [saved, setSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function ProfilePage() {
   async function handleProfileInfoUpdate(ev) {
     ev.preventDefault();
     setSaved(false);
+    setIsSaving(true);
     const response = await fetch("api/profile", {
       method: "PUT",
       headers: {
@@ -28,6 +30,7 @@ export default function ProfilePage() {
       },
       body: JSON.stringify({ name: username }),
     });
+    setIsSaving(false);
     if (response.ok) {
       setSaved(true);
     }
@@ -52,6 +55,11 @@ export default function ProfilePage() {
         {saved && (
           <h2 className="text-center bg-green-100 p-4 rounded-lg border border-green-300">
             Profile Saved!
+          </h2>
+        )}
+        {isSaving && (
+          <h2 className="text-center bg-blue-100 p-4 rounded-lg border border-blue-300">
+            Saving ...
           </h2>
         )}
         <div className="flex gap-2 items-center">
