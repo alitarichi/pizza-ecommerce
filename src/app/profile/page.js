@@ -12,6 +12,7 @@ export default function ProfilePage() {
   const [image, setImage] = useState("");
   const [saved, setSaved] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -43,12 +44,14 @@ export default function ProfilePage() {
     if (files?.length === 1) {
       const data = new FormData();
       data.set("file", files[0]);
+      setIsUploading(true);
       const response = await fetch("/api/upload", {
         method: "POST",
         body: data,
       });
       const link = await response.json();
       setImage(link);
+      setIsUploading(false);
     }
   }
 
@@ -76,6 +79,11 @@ export default function ProfilePage() {
             Saving ...
           </h2>
         )}
+        {isUploading && (
+          <h2 className="text-center bg-blue-100 p-4 rounded-lg border border-blue-300">
+            uploading ...
+          </h2>
+        )}
         <div className="flex gap-2 items-center">
           <div className="px-10 ">
             <div className=" p-2 rounded-lg relative ">
@@ -92,7 +100,7 @@ export default function ProfilePage() {
                 <input
                   type="file"
                   className="hidden"
-                  onClick={handleFileChange}
+                  onChange={handleFileChange}
                 />
                 <span className=" block bg-red-500 font-semibold text-center text-white border-gray-500 border rounded-xl cursor-pointer px-4 py-2">
                   Edit
