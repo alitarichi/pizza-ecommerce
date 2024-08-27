@@ -22,6 +22,15 @@ export default function ProfilePage() {
     if (status === "authenticated") {
       setUsername(session.data.user.name);
       setImage(session.data.user.image);
+      fetch("/api/profile").then((response) => {
+        response.json().then((data) => {
+          setPhone(data.phone);
+          setStreetAddress(data.streetAddress);
+          setCity(data.city);
+          setPostalCode(data.postalCode);
+          setCountry(data.country);
+        });
+      });
     }
   }, [session, status]);
 
