@@ -1,14 +1,11 @@
 "use client";
 
-import InfoBox from "@/components/layout/InfoBox";
 import SectionHeaders from "@/components/layout/SectionHeaders";
-import SuccessBox from "@/components/layout/SuccessBox";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { resolve } from "styled-jsx/css";
 
 export default function ProfilePage() {
   const session = useSession();
@@ -54,18 +51,24 @@ export default function ProfilePage() {
     if (files?.length === 1) {
       const data = new FormData();
       data.set("file", files[0]);
-      toast("Uploading ...");
-      const response = await fetch("/api/upload", {
+
+      const uploadPromise = fetch("/api/upload", {
         method: "POST",
         body: data,
+      }).then((response) => {
+        if (response.ok) {
+          return response.json().then((link) => {
+            setImage(link);
+          });
+        }
+        throw new Error("something went wrong");
       });
-      if (response.ok) {
-        toast.success("Upload Complete!");
-      } else {
-        toast.error("Failed to upload!");
-      }
-      const link = await response.json();
-      setImage(link);
+
+      await toast.promise(uploadPromise, {
+        loading: "Uploading...",
+        success: "Upload Completed!!",
+        error: "Failed to upload!",
+      });
     }
   }
 
