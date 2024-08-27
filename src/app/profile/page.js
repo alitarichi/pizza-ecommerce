@@ -11,9 +11,6 @@ export default function ProfilePage() {
   const session = useSession();
   const [username, setUsername] = useState("");
   const [image, setImage] = useState("");
-  const [saved, setSaved] = useState(false);
-  const [isSaving, setIsSaving] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -89,16 +86,16 @@ export default function ProfilePage() {
         {saved && <SuccessBox>Profile Saved!</SuccessBox>}
         {isSaving && <InfoBox>Saving ...</InfoBox>}
         {isUploading && <InfoBox>uploading ...</InfoBox>}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2">
           <div className="px-10 ">
             <div className=" p-2 rounded-lg relative ">
               {image && (
                 <Image
-                  className="rounded-lg w-full h-full mb-2 max-w-[120px] max-h-[120px]"
+                  className="rounded-lg w-full h-full mb-2 max-w-[240px] max-h-[240px]"
                   src={image}
                   alt="avatar"
-                  width={250}
-                  height={250}
+                  width={240}
+                  height={240}
                 />
               )}
               <label>
@@ -125,6 +122,13 @@ export default function ProfilePage() {
               disabled={true}
               value={session.data.user.email}
             />
+            <input type="tel" placeholder="Phone Number" />
+            <input type="text" placeholder="Street Address" />
+            <div className="flex gap-2">
+              <input type="text" placeholder="Zip Code" />
+              <input type="text" placeholder="City" />
+            </div>
+            <input type="text" placeholder="Country" />
             <button className="w-full" type="submit">
               Save
             </button>
