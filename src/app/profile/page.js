@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { resolve } from "styled-jsx/css";
 
 export default function ProfilePage() {
   const session = useSession();
@@ -26,19 +28,25 @@ export default function ProfilePage() {
 
   async function handleProfileInfoUpdate(ev) {
     ev.preventDefault();
-    setSaved(false);
-    setIsSaving(true);
-    const response = await fetch("api/profile", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: username, image }),
+
+    const savingPromise = new Promise(async (resolve, reject) => {
+      const response = await fetch("api/profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: username, image }),
+      });
+      if (response.ok) {
+        resolve();
+      } else reject();
     });
-    setIsSaving(false);
-    if (response.ok) {
-      setSaved(true);
-    }
+
+    await toast.promise(savingPromise, {
+      loading: "Saving ...",
+      success: "profile Saved!",
+      error: "Failed to save!",
+    });
   }
 
   async function handleFileChange(ev) {
@@ -46,14 +54,18 @@ export default function ProfilePage() {
     if (files?.length === 1) {
       const data = new FormData();
       data.set("file", files[0]);
-      setIsUploading(true);
+      toast("Uploading ...");
       const response = await fetch("/api/upload", {
         method: "POST",
         body: data,
       });
+      if (response.ok) {
+        toast.success("Upload Complete!");
+      } else {
+        toast.error("Failed to upload!");
+      }
       const link = await response.json();
       setImage(link);
-      setIsUploading(false);
     }
   }
 
@@ -119,3 +131,4 @@ export default function ProfilePage() {
     </section>
   );
 }
+true;
