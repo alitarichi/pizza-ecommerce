@@ -129,7 +129,7 @@ export default function ProfilePage() {
               </label>
             </div>
           </div>
-          <form className="grow" onSubmit={handleProfileInfoUpdate}>
+          <form className="grow pb-20" onSubmit={handleProfileInfoUpdate}>
             <input
               type="text"
               placeholder="First and last name"
@@ -153,7 +153,7 @@ export default function ProfilePage() {
               value={streetAddress}
               onChange={(ev) => setStreetAddress(ev.target.value)}
             />
-            <div className="flex gap-2">
+            <div className="flex gap-2 -my-2">
               <input
                 type="text"
                 placeholder="Postal Code"
@@ -182,4 +182,3 @@ export default function ProfilePage() {
     </section>
   );
 }
-true;

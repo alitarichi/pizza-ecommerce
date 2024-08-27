@@ -19,7 +19,7 @@ input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="text"]:disabled,
 input[type="tel"]:disabled {
-  @apply bg-gray-300 cursor-wait;
+  @apply bg-gray-300 cursor-not-allowed;
 }
 
 button {
