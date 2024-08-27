@@ -129,18 +129,21 @@ export default function ProfilePage() {
               </label>
             </div>
           </div>
-          <form className="grow pb-20" onSubmit={handleProfileInfoUpdate}>
+          <form className="grow" onSubmit={handleProfileInfoUpdate}>
+            <label className="pb-8">Name:</label>
             <input
               type="text"
               placeholder="First and last name"
               value={username}
               onChange={(ev) => setUsername(ev.target.value)}
             />
+            <label className="mb-4">Email:</label>
             <input
               type="email"
               disabled={true}
               value={session.data.user.email}
             />
+            <label className="mb-4">Phone & Address:</label>
             <input
               type="tel"
               placeholder="Phone Number"
