@@ -14,7 +14,7 @@ export default function ProfilePage() {
   const [phone, setPhone] = useState("");
   const [streetAddress, setStreetAddress] = useState("");
   const [city, setCity] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
   const { status } = session;
 
@@ -124,13 +124,38 @@ export default function ProfilePage() {
               disabled={true}
               value={session.data.user.email}
             />
-            <input type="tel" placeholder="Phone Number" />
-            <input type="text" placeholder="Street Address" />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              value={phone}
+              onChange={(ev) => setPhone(ev.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Street Address"
+              value={streetAddress}
+              onChange={(ev) => setStreetAddress(ev.target.value)}
+            />
             <div className="flex gap-2">
-              <input type="text" placeholder="Zip Code" />
-              <input type="text" placeholder="City" />
+              <input
+                type="text"
+                placeholder="Postal Code"
+                value={postalCode}
+                onChange={(ev) => setPostalCode(ev.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="City"
+                value={city}
+                onChange={(ev) => setCity(ev.target.value)}
+              />
             </div>
-            <input type="text" placeholder="Country" />
+            <input
+              type="text"
+              placeholder="Country"
+              value={country}
+              onChange={(ev) => setCountry(ev.target.value)}
+            />
             <button className="w-full" type="submit">
               Save
             </button>
