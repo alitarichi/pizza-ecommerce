@@ -34,7 +34,15 @@ export default function ProfilePage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: username, image }),
+        body: JSON.stringify({
+          name: username,
+          image,
+          phone,
+          streetAddress,
+          postalCode,
+          city,
+          country,
+        }),
       });
       if (response.ok) {
         resolve();
