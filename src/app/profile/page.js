@@ -1,5 +1,6 @@
 "use client";
 
+import InfoBox from "@/components/layout/InfoBox";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -74,16 +75,8 @@ export default function ProfilePage() {
             Profile Saved!
           </h2>
         )}
-        {isSaving && (
-          <h2 className="text-center bg-blue-100 p-4 rounded-lg border border-blue-300">
-            Saving ...
-          </h2>
-        )}
-        {isUploading && (
-          <h2 className="text-center bg-blue-100 p-4 rounded-lg border border-blue-300">
-            uploading ...
-          </h2>
-        )}
+        {isSaving && <InfoBox>Saving ...</InfoBox>}
+        {isUploading && <InfoBox>uploading ...</InfoBox>}
         <div className="flex gap-2 items-center">
           <div className="px-10 ">
             <div className=" p-2 rounded-lg relative ">
