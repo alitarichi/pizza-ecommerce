@@ -11,6 +11,11 @@ export default function ProfilePage() {
   const session = useSession();
   const [username, setUsername] = useState("");
   const [image, setImage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [streetAddress, setStreetAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [country, setCountry] = useState("");
   const { status } = session;
 
   useEffect(() => {
@@ -83,9 +88,6 @@ export default function ProfilePage() {
         <SectionHeaders MainHeader={"Profile"} />
       </div>
       <div className="max-w-md mx-auto">
-        {saved && <SuccessBox>Profile Saved!</SuccessBox>}
-        {isSaving && <InfoBox>Saving ...</InfoBox>}
-        {isUploading && <InfoBox>uploading ...</InfoBox>}
         <div className="flex gap-2">
           <div className="px-10 ">
             <div className=" p-2 rounded-lg relative ">
