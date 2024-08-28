@@ -101,7 +101,7 @@ export default function ProfilePage() {
 
   return (
     <section>
-      <div className="text-center py-8 mb-4">
+      <div className="text-center py-8 mb-2">
         <SectionHeaders MainHeader={"Profile"} />
       </div>
       <div className="max-w-md mx-auto">
@@ -130,8 +130,9 @@ export default function ProfilePage() {
             </div>
           </div>
           <form className="grow" onSubmit={handleProfileInfoUpdate}>
-            <label className="pb-8">Name:</label>
+            <label>Name:</label>
             <input
+              className="-mt-1"
               type="text"
               placeholder="First and last name"
               value={username}
@@ -139,38 +140,52 @@ export default function ProfilePage() {
             />
             <label className="mb-4">Email:</label>
             <input
+              className="-mt-1"
               type="email"
               disabled={true}
               value={session.data.user.email}
             />
-            <label className="mb-4">Phone & Address:</label>
+            <label className="mb-4">Phone Number:</label>
             <input
+              className="-mt-1"
               type="tel"
               placeholder="Phone Number"
               value={phone}
               onChange={(ev) => setPhone(ev.target.value)}
             />
+            <label className="mb-4">Street Address:</label>
             <input
+              className="-mt-1"
               type="text"
               placeholder="Street Address"
               value={streetAddress}
               onChange={(ev) => setStreetAddress(ev.target.value)}
             />
-            <div className="flex gap-2 -my-2">
-              <input
-                type="text"
-                placeholder="Postal Code"
-                value={postalCode}
-                onChange={(ev) => setPostalCode(ev.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="City"
-                value={city}
-                onChange={(ev) => setCity(ev.target.value)}
-              />
+            <div className="flex gap-2 my-1">
+              <div>
+                <label className="mb-4">Postal Code:</label>
+                <input
+                  className="-mt-1"
+                  type="text"
+                  placeholder="Postal Code"
+                  value={postalCode}
+                  onChange={(ev) => setPostalCode(ev.target.value)}
+                />
+              </div>
+              <div>
+                <label className="mb-4">City:</label>
+                <input
+                  className="-mt-1"
+                  type="text"
+                  placeholder="City"
+                  value={city}
+                  onChange={(ev) => setCity(ev.target.value)}
+                />
+              </div>
             </div>
+            <label className="mb-4">Country:</label>
             <input
+              className="-mt-1 mb-4"
               type="text"
               placeholder="Country"
               value={country}

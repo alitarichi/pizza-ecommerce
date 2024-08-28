@@ -12,7 +12,7 @@ input[type="password"],
 input[type="text"],
 input[type="tel"] {
   @apply block   border p-2 border-gray-300 bg-gray-200 w-full 
-  my-2 rounded-xl;
+   rounded-xl;
 }
 
 input[type="email"]:disabled,
@@ -20,6 +20,10 @@ input[type="password"]:disabled,
 input[type="text"]:disabled,
 input[type="tel"]:disabled {
   @apply bg-gray-300 cursor-not-allowed;
+}
+
+label {
+  @apply text-gray-500 text-sm leading-tight;
 }
 
 button {
