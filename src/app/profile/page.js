@@ -1,8 +1,10 @@
 "use client";
 
 import SectionHeaders from "@/components/layout/SectionHeaders";
+import UserTabs from "@/components/layout/UserTabs";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -16,6 +18,7 @@ export default function ProfilePage() {
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const { status } = session;
 
   useEffect(() => {
@@ -29,6 +32,7 @@ export default function ProfilePage() {
           setCity(data.city);
           setPostalCode(data.postalCode);
           setCountry(data.country);
+          setIsAdmin(data.admin);
         });
       });
     }
@@ -101,6 +105,7 @@ export default function ProfilePage() {
 
   return (
     <section>
+      <UserTabs isAdmin={isAdmin} />
       <div className="text-center py-8 mb-2">
         <SectionHeaders MainHeader={"Profile"} />
       </div>

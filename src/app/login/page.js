@@ -34,6 +34,7 @@ export default function LoginPage() {
           onChange={(ev) => setEmail(ev.target.value)}
         />
         <input
+          className="mt-4"
           type="password"
           placeholder="Your Password"
           value={password}
