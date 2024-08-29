@@ -104,7 +104,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <section>
+    <section className="pt-4">
       <UserTabs isAdmin={isAdmin} />
       <div className="text-center py-8 mb-2">
         <SectionHeaders MainHeader={"Profile"} />
