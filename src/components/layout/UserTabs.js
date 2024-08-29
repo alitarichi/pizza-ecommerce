@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function UserTabs({ isAdmin }) {
   return (
     <div className="flex gap-2 tabs justify-center pt-5">
